@@ -23,5 +23,6 @@ int main()
         printf(",%d",*(parr+i));
         i++;
     }
+    printf("\n");
     return 0;
 }
