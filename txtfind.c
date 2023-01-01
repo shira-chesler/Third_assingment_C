@@ -10,18 +10,14 @@ char txt[MAX_LINES_IN_TXT][LINE + 1];
 
 int read_from_file() //returns number of lines that were read
 {
-    //memset(txt,0,MAX_LINES_IN_TXT*(LINE+1));
     int line = 0;
     int col = 0;
     char cur_char;
-    //cur_char=fgetc(stdin);
     while ((cur_char=fgetc(stdin)) != EOF)
     {
         if(cur_char=='\n')
         {
-            //printf("%d", line);
             txt[line][col] = cur_char;
-            //printf("%c", txt[line][col]);
             line++;
             col = 0;
         }
@@ -43,7 +39,6 @@ int get_num_of_words_at_line(int line)
     for (int i = 0; i < LINE + 1; i++)
     {
         char cur_char = txt[line][i];
-        //printf("%c", cur_char);
         if (cur_char=='\n'){
             counter++;
             break;
@@ -90,7 +85,6 @@ char* get_word_at_index(int line, int index)
 
 int substring(char *str1, char *str2)
 {
-    //printf("%s", str1);
     int len_str1 = strlen(str1);
     int len_str2 = strlen(str2);
     int index_in_1 = 0;
@@ -101,11 +95,9 @@ int substring(char *str1, char *str2)
     while (index_in_1<len_str1)
     {
         int index_in_substr = 1; //if we're getting inside the 'if', it's already correct for [0]
-        //printf("%c, %c \n", *(str1+index_in_1), *(str2));
         if(*(str1+index_in_1) == *(str2))
         {
             int check_substr = 1; //boolean - should we continue to check
-            //printf("got insode loop");
             while (index_in_substr < len_str2 && check_substr)
             {
                 if (*(str1+index_in_1+index_in_substr) != *(str2+index_in_substr))
@@ -175,11 +167,9 @@ int similar_by_one(char *s, char *t)
 void print_lines(char *str)
 {
     int num_of_lines = read_from_file();
-    //printf("%d", num_of_lines);
     for (int i = 0; i < num_of_lines; i++)
     {
         int exist_in = substring(txt[i], str);
-        //printf("\n %d \n", exist_in);
         if (exist_in)
         {
             int col = 0;
@@ -203,7 +193,6 @@ void print_similar_words(char *str)
     for (int i = 0; i < num_of_lines; i++)
     {
         int num_of_words_at_line = get_num_of_words_at_line(i);
-        //printf("%d ", num_of_words_at_line);
         int index_of_word = 0;
         for (int j = 0; j < num_of_words_at_line; j++)
         {
@@ -221,7 +210,6 @@ void print_similar_words(char *str)
 
 int main()
 {
-    //char **txt=(char**)malloc(MAX_LINES_IN_TXT*(LINE+1));
     char desired_word[WORD];
     char cur_char;
     int loc=0;
@@ -232,14 +220,11 @@ int main()
         loc++;
         scanf("%c", &cur_char);
     }
-
-    desired_word[loc] = '\0';
+    desired_word[loc] = '\0'; 
     char function;
     scanf("%c", &function);
     if (function == 'a')
     {
-        //printf("%d", 1);
-        //printf("%s", desired_word);
         scanf("%c", &cur_char); // \n
         scanf("%c", &cur_char); // \n
         printf("%c", cur_char);
@@ -247,12 +232,9 @@ int main()
     }
     else if (function == 'b')
     {
-        //printf("%d", 2);
         scanf("%c", &cur_char); // \n
         scanf("%c", &cur_char); // \n
         print_similar_words(desired_word);
-        // read_from_file();
-        // int a = get_num_of_words_at_line(0);
-        // printf("%d", a);
     }
+    return 0;
 }
