@@ -36,8 +36,7 @@ void insertion_sort(int* arr, int len){
     for (int i=1; i<len; i++)
     {
         int new_value = *(arr+i);
-        int location_in_sort;
-        location_in_sort = find_location_in_sorted(arr, i-1, new_value);
+        int location_in_sort = find_location_in_sorted(arr, i-1, new_value);
         if (location_in_sort<0)
         {
             printf("an error that dosen't suppose to happen occured");
